@@ -104,9 +104,9 @@ types = ['LIVE', 'Fancam',
  'Song',
  'Highlight Medley']
 
-tripleS = pd.read_csv(r"/tripleS.csv", encoding='utf-8')
-tripleS_photos = pd.read_csv(r"/tripleS_photos.csv", encoding='utf-8')
-tripleS_members = pd.read_csv(r"/tripleS_members.csv", encoding='utf-8')
+tripleS = pd.read_csv(r"DATABASE/tripleS.csv", encoding='utf-8')
+tripleS_photos = pd.read_csv(r"DATABASE/tripleS_photos.csv", encoding='utf-8')
+tripleS_members = pd.read_csv(r"DATABASE/tripleS_members.csv", encoding='utf-8')
 
 not_members = ["Chaewon,Chaeyeon,Dahyun,Hayeon,Hyerin,Jiwoo,Jiyeon,Joobin,Kaede,Kotone,Lynn,Mayu,Nakyoung,Nien,Seoah,Seoyeon,Shion,Sohyun,Soomin,Sullin,Xinyu,Yeonji,Yooyeon,Yubin", "Chaeyeon,Dahyun,Hayeon,Hyerin,Jiwoo,Joobin,Kaede,Kotone,Lynn,Mayu,Nakyoung,Nien,Seoyeon,Shion,Sohyun,Soomin,Xinyu,Yeonji,Yooyeon,Yubin", "GRAVITY", "COMMERCIAL"]
 
