@@ -342,6 +342,15 @@ elif selected =="¿Quienes son tripleS?":
             st.markdown(f"<div style='text-align: justify; font-size: 17px; margin-bottom: 10px'>{tripleS_members.loc[index[0], "SUB UNIDADES"]}</div>", unsafe_allow_html=True)
             st.markdown(f"<h4 style='text-align: justify;'>HOGAR</h4>", unsafe_allow_html=True)
             st.markdown(f"<div style='text-align: justify; font-size: 17px; margin-bottom: 10px'>{tripleS_members.loc[index[0], "HOGAR"]}</div>", unsafe_allow_html=True)          
+            coords = tripleS_members.loc[index[0], "COORDS"]
+            coords1 = coords.split(", ")
+            for i in coords1:
+                coords1.append(float(i))
+            st.write()
+            m = folium.Map(location=tuple(coords1), zoom_start=10, tiles="OpenStreetMap")
+            poppop = f"{tripleS_members.loc[index[0], "STAGE NAME"]},{tripleS_members.loc[index[0], "HOGAR"]}"
+            folium.Marker(tripleS_members.loc[index[0], "COORDS"], popup=poppop).add_to(m)
+            st.write(map)
 elif selected == "Buscador":
     st.markdown("<h1 style='text-align: center;'>Buscador</h1>", unsafe_allow_html=True)
     yesno = ["No", "Si/Yes"]
