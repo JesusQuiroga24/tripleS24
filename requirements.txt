@@ -1,8 +1,0 @@
-streamlit
-pandas
-streamlit_option_menu
-datetime 
-plotly.express
-streamlit.components.v1 
-requests
-streamlit_folium
