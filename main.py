@@ -614,27 +614,27 @@ elif selected == "Informe":
     st.markdown(f"{lista_markdown4}")
     st.markdown("<h2 style='text-align: center;'>3. CANCIONES</h2>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Durante el primer año del grupo completo se han lanzado 29 canciones, 11 como grupo completo, las demás son subunidades (Inner Dance, Performante y Untitled), OSTs (Polaroid, Dreaming, PainDrop, First Night Of Snow) y un solo (Closer de Nakyoung).</div>", unsafe_allow_html=True)
-    with open("SONGS\TOTAL.html", "r", encoding="utf-8") as f:
+    with open("SONGS/TOTAL.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Tomando en cuenta que no todas las canciones son del grupo completo, se analiza otro gráfico con solo las canciones OT24.</div>", unsafe_allow_html=True)
-    with open("SONGS\TOTALot24.html", "r", encoding="utf-8") as f:
+    with open("SONGS/TOTALot24.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Por miembro, la cantidad de canciones que tienen varia en su participación en subunidades</div>", unsafe_allow_html=True)
-    with open("SONGS\CANTIDADTOTAL.html", "r", encoding="utf-8") as f:
+    with open("SONGS/CANTIDADTOTAL.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass    
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Por lo que el promedio de tiempo en segundos es el siguiente</div>", unsafe_allow_html=True)
-    with open("SONGS\PROM.html", "r", encoding="utf-8") as f:
+    with open("SONGS/PROM.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass    
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Son pocas las miembros que fueron las que cantaron más en cada canción, ellas tuvieron el primer puesto, todas reciben un punto</div>", unsafe_allow_html=True)
-    with open("SONGS\FIRST.html", "r", encoding="utf-8") as f:
+    with open("SONGS/FIRST.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
@@ -649,7 +649,7 @@ elif selected == "Informe":
        'TOTAL_1ST_PLACE', 'PROM']
 
     entrada = st.selectbox("INGRESA UNA CANCION:", canciones)
-    tripleS_songs = pd.read_csv(r"DATABASE\tripleS_songs.csv", encoding='utf-8')
+    tripleS_songs = pd.read_csv(r"DATABASE/tripleS_songs.csv", encoding='utf-8')
     tripleS_songs = tripleS_songs.fillna(0)
     base = {}
     for index, row in tripleS_songs.iterrows():
@@ -686,42 +686,42 @@ elif selected == "Informe":
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Durante el primer año del grupo completo se han lanzado 4 videos musicales, 1 como grupo completo, los demás como parte de las subunidades.</div>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>De la misma manera, se trabajará por cuartiles según cada video. </div>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center;'>4.1 Girls Never Die</h3>", unsafe_allow_html=True)
-    with open("MVS\GND.html", "r", encoding="utf-8") as f:
+    with open("MVS/GND.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass    
     st.markdown("<h3 style='text-align: center;'>4.2 Inner Dance</h3>", unsafe_allow_html=True)
-    with open("MVS\ID.html", "r", encoding="utf-8") as f:
+    with open("MVS/ID.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass    
     st.markdown("<h3 style='text-align: center;'>4.3 Hit The Floor</h3>", unsafe_allow_html=True)
-    with open("MVS\HTF.html", "r", encoding="utf-8") as f:
+    with open("MVS/HTF.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass    
     st.markdown("<h3 style='text-align: center;'>4.4 Untitled</h3>", unsafe_allow_html=True)
-    with open(r"MVS\UNTITLED1.html", "r", encoding="utf-8") as f:
+    with open(r"MVS/UNTITLED1.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>En total, este fue el tiempo total de pantalla que tuvieron las miembros en todos los videos musicales</div>", unsafe_allow_html=True)
-    with open("MVS\TOTAL_MVS.html", "r", encoding="utf-8") as f:
+    with open("MVS/TOTAL_MVS.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Esta fue la cantidad de videos musicales en la que cada una participó</div>", unsafe_allow_html=True)
-    with open("MVS\TOTAL_CANTIDAD.html", "r", encoding="utf-8") as f:
+    with open("MVS/TOTAL_CANTIDAD.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Por lo tanto, este fue el promedio de su participación en los videos musicales</div>", unsafe_allow_html=True)
-    with open("MVS\TOTAL_PROM.html", "r", encoding="utf-8") as f:
+    with open("MVS/TOTAL_PROM.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Al haber cuatro videos musicales, fueron aún menos las miembros que fueron las que más brillaron, todas reciben un punto</div>", unsafe_allow_html=True)
-    with open("MVS\TOTAL_1ST.html", "r", encoding="utf-8") as f:
+    with open("MVS/TOTAL_1ST.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
@@ -730,23 +730,23 @@ elif selected == "Informe":
     st.markdown("<h3 style='text-align: center;'>5.1 ANÁLISIS GENERAL</h3>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Esta amplia base de datos nos ayuda a entender de forma masiva como se han ido comportando los patrones de participación de las miembros de tripleS. </div>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Esta gráfico muestra una sumatoria total indiscriminada de todos los videos.</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass    
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Como parte del analisis tambien se va a tomar en cuenta cuando en el contenido multimedia solo aparece una miembro</div>", unsafe_allow_html=True)
-    with open(r"VIDEOS\GRAFICO_TOTAL_SOLO.html", "r", encoding="utf-8") as f:
+    with open(r"VIDEOS/GRAFICO_TOTAL_SOLO.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass    
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Tener esta información en crudo nos da una primera perspectiva hacia dónde vamos, pero debemos de ir ramificando poco a poco nuestra base de datos para tener claro en que productos y formatos cada miembro resalta más. </div>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Por ello es necesario hacer un analisis de los tipos de videos que encontramos en esta base de datos</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_TYPE.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_TYPE.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass       
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Y claro, su equivalencia en tiempo</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_TYPE_TIME.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_TYPE_TIME.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass       
@@ -756,17 +756,17 @@ elif selected == "Informe":
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Para la selección de los videos que entran dentro de esta categoria se tomaron en cuenta los tipos: 'Fancam', 'Music Video', 'Dance', 'Special Clip', 'Performance', 'Dance Practice', 'Concert', 'Playlist', 'Official Audio' y 'Song'.</div>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Playlist considera todas las entradas de la base de datos que cuentan con más de un video y se organizaron por playlist para mayor facilidad de reproducción.</div>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Según el siguiente gráfico estos son los tipos de videos principales en los productos Off Stage:</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_ON_STAGE_TYPE.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_ON_STAGE_TYPE.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass   
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>A partir de los productos On Stage resultó el siguiente gráfico:</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_ON_STAGE.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_ON_STAGE.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass   
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Parte de las presentaciones On Stage en especial en los shows musicales son las fancams, este es un gráfico que representa todas las fancams/facecams individuales. </div>", unsafe_allow_html=True)  
-    with open("VIDEOS\GRAFICO_TOTAL_ON_STAGE_FANCAM.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_ON_STAGE_FANCAM.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass     
@@ -776,7 +776,7 @@ elif selected == "Informe":
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Visionary Vision fue la subunidad de baile del grupo, que fue elegida a través de un Grand Gravity. Las miembros elegidas fueron: HyeRin, YooYeon, NaKyoung, YuBin, Kaede, Kotone, YeonJi, Nien, SoHyun, Xinyu, Lynn, JiYeon. Debutaron el 23 de octubre de 2024 y promocionaron en shows musicales desde el 24 de octubre hasta el 10 de noviembre del mismo año. A la fecha no está confirmado que la subunidad vuelva a promocionar en un futuro próximo.</div>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Hatchi es la primera subunidad japonesa del grupo, al igual que Visionary Vision fue elegida en un Grand Gravity. Las miembros elegidas fueron: JiWoo, ChaeYeon, YooYeon, SooMin, Kotone, Mayu, ShiOn, ChaeWon. La subunidad se promociona exclusivamente en Japón, por lo que no se presentó en shows musicales. Debutaron el 20 de noviembre de 2024 y están preparando su primer comeback para la segunda mitad de 2025</div>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>tripleS Come True es la subunidad que realizó el segundo tour mundial del grupo. Las miembros elegidas fueron SeoYeon, NaKyoung, DaHyun, Nien, JooBin, HaYeon, Sullin, SeoAh. Este tour llegó a Sur Asia y NorteAmérica con 10 presentaciones. Todos los conciertos han sido subidos a YouTube, en videos o playlists.</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_ON_STAGE_DIMENSIONS.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_ON_STAGE_DIMENSIONS.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
@@ -787,7 +787,7 @@ elif selected == "Informe":
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'></div>", unsafe_allow_html=True)
     st.markdown("<h5 style='text-align: center;'>5.2.1.1 ANÁLISIS ON STAGE - VISIONARY VISION</h5>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>El siguiente gráfico representa solo los productos On Stage que tienen en sus palabras clave: Visionary Vision.</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_ON_STAGE_VV.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_ON_STAGE_VV.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass 
@@ -795,28 +795,28 @@ elif selected == "Informe":
     st.markdown("<h4 style='text-align: center;'>5.2.2 ANÁLISIS ON STAGE - NO DIMENSIONS</h4>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Respecto a las miembros, su participación en eventos de no subunidades es la siguiente:</div>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Las miembros que resaltan son las que no han promocionado en shows musicales.</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_ON_STAGE_NON_DIMENSIONS.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_ON_STAGE_NON_DIMENSIONS.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass    
     st.markdown("<h3 style='text-align: center;'>5.3 ANÁLISIS OFF STAGE</h3>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Se considera Off Stage todos los productos audiovisuales excluyentes a los On Stage, ya sea, detrás de cámaras, blogs, SIGNALs, Secret Bases, LIVE y demás. Según el siguiente gráfico estos son los tipos de videos principales en los productos Off Stage:</div>", unsafe_allow_html=True)    
-    with open("VIDEOS\GRAFICO_TOTAL_OFF_STAGE_TYPE.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFF_STAGE_TYPE.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>A partir de los productos Off Stage resultó el siguiente gráfico:</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_OFF_STAGE.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFF_STAGE.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Del gráfico mostrado, este representa los productos donde las miembros aparecen solas</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_OFF_STAGE_SOLO.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFF_STAGE_SOLO.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>A partir de la información que tenemos podemos ramificarla por origen</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_OFF_STAGE_SOURCE.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFF_STAGE_SOURCE.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
@@ -825,88 +825,88 @@ elif selected == "Informe":
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Los videos oficiales son los publicados en el canal de YouTube de tripleS official, y los LIVE resubidos.</div>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Los LIVE no se guardan en el canal oficial, una cuenta fan (MangoNim) los subtitula y resube. Por lo que todos los LIVE se contarán como Official, porque fueron transmitidos de manera oficial en la cuenta de Youtube.</div>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Respecto a los tipos dentro del contenido oficial, los tipos se reparten de la siguiente manera:</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_OFF_STAGE_OFFICIAL_TYPE.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFF_STAGE_OFFICIAL_TYPE.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Como vemos, en el gráfico hay una predominancia de los tipos Shorts, SIGNAL, Secret Base y Live.</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_OFF_STAGE_OFFICIAL.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFF_STAGE_OFFICIAL.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
-    with open("VIDEOS\GRAFICO_TOTAL_OFF_STAGE_OFFICIAL_SOLO.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFF_STAGE_OFFICIAL_SOLO.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<h5 style='text-align: center;'>5.3.1.1 ANÁLISIS OFFICIAL SHORTS</h5>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Shorts considera todos los videos cortos subidos en TikTok o YouTube. Considera trends, dance challenge y demás. No considera shorts que son teasers resubidos o similares.</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_OFFICIAL_SHORTS.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFFICIAL_SHORTS.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
-    with open("VIDEOS\GRAFICO_TOTAL_OFFICIAL_SHORTS_SOLO.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFFICIAL_SHORTS_SOLO.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<h5 style='text-align: center;'>5.3.1.2 ANÁLISIS SIGNAL</h5>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>SIGNAL es un reality web show que sigue a las miembros de tripleS en su día a día. En un principio se subía contenido diario, de lunes a viernes, hasta que bajó de frecuencia en la temporada Cream01, solo lunes, miércoles y viernes.</div>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Dentro de SIGNAL, están los COSMO EXCLUSIVE SIGNAL. Contenido que se sube exclusivamente en la aplicación de cosmo, app de MODHAUS y han sido resubidas a Youtube.</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_SIGNAL.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_SIGNAL.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
-    with open("VIDEOS\GRAFICO_TOTAL_SIGNAL_SOLO.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_SIGNAL_SOLO.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<h5 style='text-align: center;'>5.3.1.3 ANÁLISIS SECRET BASE</h5>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>SecretBase en un vlog semanal personal de cada miembro, un formato simple donde por unos minutos hablan sobre temas variados y sus percepciones frente a próximos proyectos o similares. Usualmente los vlogs son subidos días o semanas después de ser grabados. Antes de un comeback, todas las miembros que participan en las promociones suben un SecretBase donde hablan sobre el próximo lanzamiento.</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_SECRETBASE.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_SECRETBASE.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<h5 style='text-align: center;'>5.3.1.4 ANÁLISIS LIVE</h5>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>LIVE o SIGNAL LIVE es un en vivo que realiza una o más miembros durante la semana, entre uno o tres por semana. Duran aproximadamente entre cuarenta minutos y una hora.</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_LIVE.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_LIVE.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
-    with open("VIDEOS\GRAFICO_TOTAL_LIVE_SOLO.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_LIVE_SOLO.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<h4 style='text-align: center;'>5.3.2 ANÁLISIS OFF STAGE - NON OFFICIAL</h4>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Se considera No Oficial todo el contenido off stage que no está publicado en el canal oficial de tripleS oficial en YouTube o TikTok.</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_OFF_STAGE_NON_OFFICIAL_TYPE.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFF_STAGE_NON_OFFICIAL_TYPE.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>Predominan los Variety, programas de contenido diverso de entretenimiento.</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_OFF_STAGE_NON_OFFICIAL.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFF_STAGE_NON_OFFICIAL.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
-    with open("VIDEOS\GRAFICO_TOTAL_OFF_STAGE_NON_OFFICIAL_SOLO.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFF_STAGE_NON_OFFICIAL_SOLO.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<h5 style='text-align: center;'>5.3.2.1 ANÁLISIS NON OFFICIAL SHORTS</h5>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>De la misma manera que los Shorts Oficiales, se suben en distintas cuentas pero igual promocionan el grupo</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_NON_OFFICIAL_SHORTS.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_NON_OFFICIAL_SHORTS.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
-    with open("VIDEOS\GRAFICO_TOTAL_NON_OFFICIAL_SHORTS_SOLO.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_NON_OFFICIAL_SHORTS_SOLO.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
     st.markdown("<h5 style='text-align: center;'>5.3.2.2 ANÁLISIS VARIETY</h5>", unsafe_allow_html=True)
     st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>A lo largo del internet surcoreano y el internet en general hay diversos productos que no se categorizan especificamente en uno u otro, por lo que se les considera Variety o de Variedad de Entretenimiento</div>", unsafe_allow_html=True)
-    with open("VIDEOS\GRAFICO_TOTAL_OFF_STAGE_NON_OFFICIAL_VARIETY.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFF_STAGE_NON_OFFICIAL_VARIETY.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
-    with open("VIDEOS\GRAFICO_TOTAL_OFF_STAGE_NON_OFFICIAL_VARIETY_SOLO.html", "r", encoding="utf-8") as f:
+    with open("VIDEOS/GRAFICO_TOTAL_OFF_STAGE_NON_OFFICIAL_VARIETY_SOLO.html", "r", encoding="utf-8") as f:
         html_content = f.read()
     components.html(html_content, height=500)
     pass
