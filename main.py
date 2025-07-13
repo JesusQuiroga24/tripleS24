@@ -346,7 +346,7 @@ elif selected =="¿Quienes son tripleS?":
             coords1 = coords.split(", ")
             for i in coords1:
                 coords1.append(float(i))
-            st.write(coords1)
+            st.write(f"{coords1}")
 elif selected == "Buscador":
     st.markdown("<h1 style='text-align: center;'>Buscador</h1>", unsafe_allow_html=True)
     yesno = ["No", "Si/Yes"]
