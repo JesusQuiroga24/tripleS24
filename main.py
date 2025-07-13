@@ -1,3 +1,4 @@
+#IMPORTAMOS LAS BIBLIOTECAS NECESARIAS
 import streamlit as st
 from streamlit_option_menu import option_menu
 import pandas as pd
@@ -10,9 +11,9 @@ from streamlit_folium import st_folium
 
 from memory_profiler import profile
 #diccionarios
-
+#Lista con los nombres de las miembros
 miembros_tS = ["Seoyeon", "Hyerin", "Jiwoo", "Chaeyeon", "Yooyeon", "Soomin", "Nakyoung", "Yubin", "Kaede", "Dahyun", "Kotone", "Yeonji", "Nien", "Sohyun", "Xinyu", "Mayu", "Lynn", "Joobin", "Hayeon", "Shion", "Chaewon", "Sullin", "Seoah", "Jiyeon"]
-
+#Diccionario con los colores asignados en el grupo a las miembros
 colors_ts_hex = {
     "Seoyeon": "#1E90FF",
     "Hyerin": "#736AFF",
@@ -39,7 +40,7 @@ colors_ts_hex = {
     "Seoah": "#E0FFFF",
     "Jiyeon": "#F7B360"
 }
-
+#Un diccionario con todos los tipos y la asignacion de color a cada uno para poder trabajar con ello
 color_type = {
  'LIVE': "#FF0000",
  'Fancam': '#0000FF',
@@ -73,7 +74,7 @@ color_type = {
  'Song': '#FAFAD2',
  'Highlight Medley': '#CD5C5C'
 }
-
+#Lista con los nombres de los tipos de productos que podemos encontrar
 types = ['LIVE', 'Fancam',
  'Variety',
  'SIGNAL',
@@ -105,32 +106,52 @@ types = ['LIVE', 'Fancam',
  'Song',
  'Highlight Medley']
 
+#Llamamos pandas para poder abrir archivos csv, los que vamos a usar son el general de video
 tripleS = pd.read_csv(r"DATABASE/tripleS.csv", encoding='utf-8')
+#El de fotos
 tripleS_photos = pd.read_csv(r"DATABASE/tripleS_photos.csv", encoding='utf-8')
+#El de informacion sobre las miembros
 tripleS_members = pd.read_csv(r"DATABASE/tripleS_members.csv", encoding='utf-8')
+#Creamos una lista con palabras no deseables, ya sea el grupo completo y a cada una se le otorga tiempo por lo que no es útil
+not_members = ["Chaewon,Chaeyeon,Dahyun,Hayeon,Hyerin,Jiwoo,Jiyeon,Joobin,Kaede,Kotone,Lynn,Mayu,Nakyoung,Nien,Seoah,Seoyeon,Shion,Sohyun,Soomin,Sullin,Xinyu,Yeonji,Yooyeon,Yubin",
+               #El grupo completo previo, cuando eran solo 20, en dos videos que era detrás de cámaras de un concierto en febrero de 2024 (fuera del tiempo de estudio) solo aparecen las miembros reveladas hasta ese entonces
+               "Chaeyeon,Dahyun,Hayeon,Hyerin,Jiwoo,Joobin,Kaede,Kotone,Lynn,Mayu,Nakyoung,Nien,Seoyeon,Shion,Sohyun,Soomin,Xinyu,Yeonji,Yooyeon,Yubin",
+               #Existe un grupo de videos donde no aparece ninguna miembro, son más vien votaciones/Gravity o commercial que son parte de la base de datos
+               "GRAVITY", "COMMERCIAL"]
 
-not_members = ["Chaewon,Chaeyeon,Dahyun,Hayeon,Hyerin,Jiwoo,Jiyeon,Joobin,Kaede,Kotone,Lynn,Mayu,Nakyoung,Nien,Seoah,Seoyeon,Shion,Sohyun,Soomin,Sullin,Xinyu,Yeonji,Yooyeon,Yubin", "Chaeyeon,Dahyun,Hayeon,Hyerin,Jiwoo,Joobin,Kaede,Kotone,Lynn,Mayu,Nakyoung,Nien,Seoyeon,Shion,Sohyun,Soomin,Xinyu,Yeonji,Yooyeon,Yubin", "GRAVITY", "COMMERCIAL"]
-
+#Creamos el menu de principal con option_menu, donde estan 4 páginas, cada una con su respectivo código más abajo. 
 selected = option_menu("Menú Principal", ["Inicio", "¿Quienes son tripleS?", "Buscador", "Informe"],
+                       #option menu te da la opción de elegir iconos para cada menu.
                        icons=["menu-button-fill", "patch-question", "search", "card-text"],
+                       #y elegir un icono principal para el menú
                        menu_icon="cast",
+                       #Por default tenemos que primero se va a mostrar la página de Inicio
                        default_index=0,
+                       #Y la orientación del menú será horizontal
                        orientation="horizontal")
+
+#Creamos un decorado para tener un seguimiento de la memoria que usa la página
 @profile
+
+#Definimos la función main para poder usar el decorado 
 def main():
+    #Empezamos con la página de Inicio
     if selected == "Inicio":
+        #Ponemos un titulo que diga Inicio, se usa el h1 ya que es el más grande y se centra el texto para su distinción
         st.markdown("<h1 style='text-align: center;'>¿No son 24 demasiadas?: La desigualdad de contenido entre las 24 integrantes del grupo tripleS. Un análisis de datos sobre su primer año como grupo completo.</h1>", unsafe_allow_html=True)
+        #Creamos una variable de texto de bienvenida
         texto = """
         Bienvenidxs a ¿No son 24 demasiadas?, esta página es el trabajo integrador del curso 1CCO19
         "Pensamiento Computacional para Comunicadores" como parte de cierre del curso.
         El trabajo a sido realizado en su totalidad por Jesus Quiroga.
         """
+        #Creamos dos columnas, en una ira una imagen del grupo, en la otra el texto, con un poco de espacio después del parrafó para mantener un orden
         col1, col2 = st.columns(2)
         col1.image("tripleS.jpeg", caption='tripleS', width=300)
         col2.markdown(f"<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>{texto}</div>", unsafe_allow_html=True)
-
+        #Creamos un subtitlo de introducción, a partir de ello se ira reduciendo de h1 a h2 respectivamente para mantener una jerarquia de titulos más estable
         st.markdown("<h2 style='text-align: center;'>Introducción</h2>", unsafe_allow_html=True)
-        
+        #Texto de introducción
         texto_intro = """
         El problema surge a partir de mi participación en el fandom de tripleS. tripleS es un grupo de K-pop creado por 
         la empresa MODHAUS cuál proyecto comenzó en Mayo de 2022 con la revelación de la primera miembro o S1 Yoon SeoYeon.
@@ -151,15 +172,17 @@ def main():
         de entretenimiento que provee la compañía o en la cual participan ellas fuera de la compañía, ya sea programas 
         reality, festivales, radio, etc.., es incierta.
         """
+        #Se pone el texto en un div para que tenga su propio espacio y este justificado para buena lectura
         st.markdown(f"<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>{texto_intro}</div>", unsafe_allow_html=True)
-        
+        #Empezamos con la descripción de la Solución
         st.markdown("<h2 style='text-align: center;'>Solución</h2>", unsafe_allow_html=True)
-
+        #Una variable de texto de solución
         texto_solucion1 = """
         Para tener una respuesta más clara sobre cómo funciona la distribución de contenido de las miembros se va a realizar un análisis a partir de gráficos y cuartiles. Por cada gráfico donde se tome al menos 8 miembros (el tamaño mínimo de una subunidad es 4 son pocos los casos en los que hay 4 miembros, al menos que sea una situación tan exclusiva como mayor cantidad de primer puesto en canciones o videos musicales). Habrán excepciones cuando los gráficos den valores discretos como primer puesto en canciones o MVS. 
         Se crearon gráficos a partir de dos tipos de base de datos:
         Por un lado, las bases de datos que contaban con valores enteros ya sumados y establecidos, hechos por mí. Entonces el trabajo era solo generar los gráficos sin ninguna operación.
         """
+        #Luego una div para que muestra en un recuadro el código que se va a explicar
         Muestra1 = """
         Muestra1: Cuadro “Cantidad de primer puesto en videoclips”
         
@@ -193,7 +216,7 @@ def main():
                     color_discrete_sequence=colors_base,
                     text="Cantidad"
                     )"""
-        
+        #De la misma manera hacemos con el siguiente código
         Muestra2 = """
         Pero la mayoría de los gráficos se realizaron con el siguiente código:
         
@@ -251,6 +274,7 @@ def main():
         tripleS_px.show()
     
         """
+        #A través de titulos y textos se va explicando los códigos
         st.markdown(f"<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>{texto_solucion1}</div>", unsafe_allow_html=True)
         st.markdown(f"<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>{Muestra1}</div>", unsafe_allow_html=True)
         st.markdown("<h3 style='text-align: justify;'>1. Preparación de datos:</h3>", unsafe_allow_html=True)
@@ -267,7 +291,6 @@ def main():
         st.markdown(f"<div style='text-align: justify; font-size: 17px; margin-bottom: 10px'><b>Crear un gráfico de barras de Plotly:</b> El código utiliza la función px.bar() de Plotly Express para crear un gráfico de barras. Establece el eje 'x' como 'Miembro', el eje 'y' como 'Cantidad', el 'color' como 'Miembro' para tener una leyenda por color, el 'title' como 'Cantidad de primer puesto en videos musicales por miembro', la 'color_discrete_sequence' como 'colors_base' y el 'texto' en 'Cantidad' para que en cada columna se vea el texto.</div>", unsafe_allow_html=True)
         st.markdown(f"<div style='text-align: justify; font-size: 17px; margin-bottom: 10px'><b>Visualizar el gráfico:</b> Vemos el gráfico</div>", unsafe_allow_html=True)
         st.image("MUESTRA2.png", caption='1er Diagrafa de Flujo: Cantidades ya establecidas', width=700)
-
         st.markdown(f"<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>{Muestra2}</div>", unsafe_allow_html=True)
         st.markdown("<h3 style='text-align: justify;'>1. Preprocesamiento de datos:</h3>", unsafe_allow_html=True)
         st.markdown(f"<div style='text-align: justify; font-size: 17px; margin-bottom: 10px'><b>Inicializar el diccionario 'triples_total':</b> El código comienza inicializando un diccionario vacío llamado 'triples_total'</div>", unsafe_allow_html=True)
@@ -285,12 +308,16 @@ def main():
         st.markdown(f"<div style='text-align: justify; font-size: 17px; margin-bottom: 10px'><b>Crear un gráfico de barras de Plotly:</b> El código utiliza la función px.bar() de Plotly Express para crear un gráfico de barras. Establece el eje 'x' como 'Miembro', el eje 'y' como 'Cantidad', el 'color' como 'Miembro' para tener una leyenda por color, el 'title' como 'Cantidad de primer puesto en videos musicales por miembro', la 'color_discrete_sequence' como 'colors_base' y el 'texto' en 'Cantidad' para que en cada columna se vea el texto.</div>", unsafe_allow_html=True)
         st.markdown(f"<div style='text-align: justify; font-size: 17px; margin-bottom: 10px'><b>Visualizar el gráfico:</b> Vemos el gráfico</div>", unsafe_allow_html=True)
         st.image("MUESTRA1.png", caption='2do Diagrafa de Flujo: Suma de duración', width=700)
+        #Creamos una variable de texto de reflexión
         text_refl = """
         Las limitaciones de este proyecto son pocas y se resume en los contenidos de media. Los contenidos de media donde aparece más de una miembro no se sabe cuánto tiempo del video cada miembro aparece. Por ejemplo, en un SIGNAL con más de 10 miembros, a cada miembro se le cuenta el tiempo del video completo, aproximadamente 5 minutos, pero de esos 5 minutos solo aparece 1 minuto. Para poder mejorar solucionar esto se podría entrenar un algoritmo que pueda analizar cada frame e identificar que miembro es. Luego se cuenta cuanto tiempo apareció y es más preciso con los resultados. Otra limitación del proyecto son los festivales y fancams que no todas son subidas a YouTube enteras. El caso de ‘Waterbomb Tokyo’ donde no había ningún video en YouTube y tuve que juntar todas las fancams del evento que encontré en Twitter, ahora X. También están en los fancafé, fansigns, y ahora con la implementación de Cosmo Live, una forma de las miembros de realizar Live cuando ellas deseen desde sus celulares y con total control. Y no olvidar los posts en Instagram donde cada cierto tiempo un grupo de 6 miembros aproximadamente sube un post, y la cantidad de posts subidos de una miembro también influye en que tanto se le promociona en redes sociales. Más sobre los resultados se compartirán en la parte del Informe.
         """
+        #Lo establecemos y terminamos con el inicio
         st.markdown("<h2 style='text-align: center;'>Reflexión</h2>", unsafe_allow_html=True)
         st.markdown(f"<div style='text-align: justify; font-size: 15px;'>{text_refl}</div>", unsafe_allow_html=True)
+    #Avanzamos a la segunda página    
     elif selected =="¿Quienes son tripleS?":
+        #Teniendo en cuenta el indice 24 son todas las fotos grupales vamos llamandolas mientras hablamos sobre el grupo
         st.image(tripleS_photos.loc[24, "PHOTO1"])
         st.markdown("<h1 style='text-align: center;'>¿Quienes son tripleS?</h1>", unsafe_allow_html=True)  
         st.markdown("<div style='text-align: justify; font-size: 15px; margin-bottom: 10px'>tripleS (Hangul: 트리플에스, Japonés: トリプルS), también conocida como SSS y SocialSonyoSeoul, es un grupo musical surcoreano multinacional de 24 integrantes bajo el sello MODHAUS. El grupo debutó oficialmente el 13 de febrero de 2023 con el miniálbum ASSEMBLE y la canción principal, 'Rising', con la participación de las diez integrantes reveladas. Posteriormente, regresaron como grupo completo con las 24 integrantes el 8 de mayo de 2024 con el lanzamiento de su primer álbum de estudio, ASSEMBLE24, y la canción principal, 'Girls Never Die'.</div>", unsafe_allow_html=True)
@@ -302,12 +329,20 @@ def main():
         url_tS = "https://triples.fandom.com/wiki/TripleS"
         st.markdown("[tripleS](%s)" % url_tS)
         st.image(tripleS_photos.loc[24, "PHOTO3"])
+        #Ahora los perfiles de cada integrante
+        #Para esto se realizo una lista de selección y se itero en la base de datos de miembros para buscar su información
         miembro = st.selectbox("ELIGE UNA MIEMBRO:", miembros_tS)
         for i in miembros_tS:
+            #Confirmamos que la miembro elegida sea la que se este buscando
             if i == miembro:
+                #Establecemos el índice de la miembro, para poder usar loc y ir encontrando la información e imágenes necesarias
                 index = tripleS_photos.index[tripleS_photos["MEMBER"] == i].tolist()
+                #Primero ponemos su nombre
                 st.markdown(f"<h1 style='text-align: center;'>{miembro}</h1>", unsafe_allow_html=True)
+                #Una foto
                 st.image(tripleS_photos.loc[index[0], "PHOTO1"])
+                #Un grupo de datos / Foto respectivamente
+                #Para el contenido se uso f"{}" ya que imprimia las variables con mayor facilidad
                 st.markdown(f"<h4 style='text-align: justify;'>N° S</h4>", unsafe_allow_html=True)
                 st.markdown(f"<div style='text-align: justify; font-size: 17px; margin-bottom: 10px'>{tripleS_members.loc[index[0], "N° S"]}</div>", unsafe_allow_html=True)
                 st.markdown(f"<h4 style='text-align: justify;'>STAGE NAME</h4>", unsafe_allow_html=True)
@@ -344,72 +379,77 @@ def main():
                 st.markdown(f"<div style='text-align: justify; font-size: 17px; margin-bottom: 10px'>{tripleS_members.loc[index[0], "SUB UNIDADES"]}</div>", unsafe_allow_html=True)
                 st.markdown(f"<h4 style='text-align: justify;'>HOGAR</h4>", unsafe_allow_html=True)
                 st.markdown(f"<div style='text-align: justify; font-size: 17px; margin-bottom: 10px'>{tripleS_members.loc[index[0], "HOGAR"]}</div>", unsafe_allow_html=True)
-                coords = tripleS_members.loc[index[0], "COORDS"]
-                coords1 = coords.split(", ")
-                for i in coords1:
-                    coords1.append(float(i))
-                st.write()
-                m = folium.Map(location=tuple(coords1), zoom_start=10, tiles="OpenStreetMap")
-                poppop = f"{tripleS_members.loc[index[0], "STAGE NAME"]},{tripleS_members.loc[index[0], "HOGAR"]}"
-                folium.Marker(tripleS_members.loc[index[0], "COORDS"], popup=poppop).add_to(m)
-                st.write(map)          
+                ###Este fue un intento de agregar mapas pero no se logró, ni con st_data st_folium
+                ###coords = tripleS_members.loc[index[0], "COORDS"]
+                #coords1 = coords.split(", ")
+                #for i in coords1:
+                #    coords1.append(float(i))
+                #st.write()
+                #m = folium.Map(location=tuple(coords1), zoom_start=10, tiles="OpenStreetMap")
+                #poppop = f"{tripleS_members.loc[index[0], "STAGE NAME"]},{tripleS_members.loc[index[0], "HOGAR"]}"
+                #folium.Marker(tripleS_members.loc[index[0], "COORDS"], popup=poppop).add_to(m)
+                #st.write(map)          
+    #Ahora con una parte más compleja, el buscador
     elif selected == "Buscador":
-        
+        #Como siempre ponemos título
         st.markdown("<h1 style='text-align: center;'>Buscador</h1>", unsafe_allow_html=True)
-        yesno = ["No", "Si/Yes"]
-        yesno_choose = ["No, no he terminado/No, I've not", "Si, terminé/Yes, I finish"]
-        yesno_type = ["Si, tipos exclusivos/Yes, exclusive types", "No, no tipos exclusivos/No, no exclusive types"]
-        yesno_member = ["Si, miembros exclusivos/Yes, exclusive members", "No, no miembros exclusivos/No, no exclusive members"]
-        yesno_df = ["No, no quiero ver la base de datos completa/No, I don't want to see the whole database", "Si, quiero ver la base de datos completa/Yes, I want to see the whole database"]
-        posibilidades = ["Por fechas/By Date", "Por tipos/By Type", "Por miembros/By Members"]
-        start = st.selectbox("¿Quieres iniciar el buscador?/Do you wanna start the searching?:", yesno)
-        if start == "Si/Yes":
-            base_busc = []
-            df_base_busc = pd.Series()
-            start_pos = st.multiselect("¿Como quieres buscar?/How do you wanna search?:", posibilidades)
-            if "Por fechas/By Date" in start_pos:
-                day_in = st.date_input("A partir de:", min_value= "2024-04-04", max_value="2025-04-03")
-                st.write("A partir de:", day_in)
+        #Ya que no podemos usar una misma key (se verá más adelante), creamos respuestas diferentes para cada ocasión, se usarán a continuación
+        yesno = ["No", "Si/Yes"] #Basicas y primeras
+        yesno_choose = ["No, no he terminado/No, I've not", "Si, terminé/Yes, I finish"] #Sobre el estado de la elección
+        yesno_type = ["Si, tipos exclusivos/Yes, exclusive types", "No, no tipos exclusivos/No, no exclusive types"] #Si quiere utilizar tipos exclusivos (busqueda exacta)
+        yesno_member = ["Si, miembros exclusivos/Yes, exclusive members", "No, no miembros exclusivos/No, no exclusive members"] #Si quiere utilizar miembros exclusivos (busqueda exacta)
+        yesno_df = ["No, no quiero ver la base de datos completa/No, I don't want to see the whole database", "Si, quiero ver la base de datos completa/Yes, I want to see the whole database"] #Si quiere o no ver la base de datos completa resultante
+        posibilidades = ["Por fechas/By Date", "Por tipos/By Type", "Por miembros/By Members"] #Creamos la posibilidades de filtros de busqueda
+        start = st.selectbox("¿Quieres iniciar el buscador?/Do you wanna start the searching?:", yesno, key = "No") #Y un iniciador del buscador, la key es el valor con el que se va a mostrar al iniciar
+        if start == "Si/Yes": #Con la confirmación de inicio proseguimos
+            base_busc = [] #Un lista vacia para agregar códigos
+            df_base_busc = pd.Series() #Un dataframe vacío
+            start_pos = st.multiselect("¿Como quieres buscar?/How do you wanna search?:", posibilidades) #Se da escoger las posibilidades
+            if "Por fechas/By Date" in start_pos: #Si es por fecha
+                day_in = st.date_input("A partir de:", min_value= "2024-04-04", max_value="2025-04-03") #Establecemos los date input, datetime en formato date, uno minimo y uno maximo para manejar rangos
+                st.write("A partir de:", day_in) #Los imprimimos para que el usuario vea su elección
                 day_out = st.date_input("Hasta:", min_value= "2024-04-04", max_value="2025-04-03")
                 st.write("Hasta:", day_out)
-            if "Por tipos/By Type" in start_pos:
+            if "Por tipos/By Type" in start_pos: #Sobre los tipos, establecemos una caja de multiseleccion a partir de la lista de tipos
                 busc_types = st.multiselect("Elige una o más tipos/Choose one or more types:", types)
-                exclusive_type = st.selectbox("¿Deseas que sea una búsqueda exclusiva?/Do you want a exclusive research?:", yesno_type)
-                st.write("Una búsqueda exclusiva será más rigurosa y solo tomará en cuenta que los valores pedidos de tipos sean exactos.")
-            if "Por miembros/By Members" in start_pos:
+                exclusive_type = st.selectbox("¿Deseas que sea una búsqueda exclusiva?/Do you want a exclusive research?:", yesno_type) #Damos la ocpión de busqueda exclusiva
+                st.write("Una búsqueda exclusiva será más rigurosa y solo tomará en cuenta que los valores pedidos de tipos sean exactos.") #Y explicamos de que vá
+            if "Por miembros/By Members" in start_pos: #El mismo proceso de tipos realizamos con miembros
                 busc_member = st.multiselect("Elige una o más miembros/Choose one or more members:", miembros_tS)
                 exclusive_mem = st.selectbox("¿Deseas que sea una búsqueda exclusiva?/Do you want a exclusive research?:", yesno_member)
                 st.write("Una búsqueda exclusiva será más rigurosa y solo tomará en cuenta que los valores pedidos de miembros sean exactos.")
-            finish = st.selectbox("¿Terminaste de elegir?/Did you finish choosing?:", yesno_choose, key="No")
-            if finish == "Si, terminé/Yes, I finish":
-                base_date = []
+            finish = st.selectbox("¿Terminaste de elegir?/Did you finish choosing?:", yesno_choose, key="No, no he terminado/No, I've not") #Confirmamos que ya hemos terminado nuestra elección
+            if finish == "Si, terminé/Yes, I finish": #Confirmamos que se haya terminado la elección
+                base_date = [] #Creamoss listas vaciás para agregar ocurrencias
                 base_type_exc = []
                 base_type = []
                 base_mem_exc = []
                 base_mem = []
-                if "Por fechas/By Date" in start_pos:
+                if "Por fechas/By Date" in start_pos: #Depende de su eleccion se va a agregar a la lista indicada los codigos correspondientes
                     for index, row in tripleS.iterrows():
-                        datedf = datetime.strptime(row["DATE"], "%Y-%m-%d")
-                        if day_in <= datedf.date() <= day_out:
+                        datedf = datetime.strptime(row["DATE"], "%Y-%m-%d") #Al trabajar con fechas, convertimos el valor de la columna DATE a datetime y luego a date
+                        if day_in <= datedf.date() <= day_out: #Comparamos y encontramos
                             base_date.append(row["code"])
-                if "Por tipos/By Type" in start_pos:
-                    if exclusive_type == "Si, tipos exclusivos/Yes, exclusive types":
-                        busc_types.sort()
-                        busc_types1 = ",".join(busc_types)
-                        for index, row in tripleS.iterrows():
+                if "Por tipos/By Type" in start_pos: #Realizamos lo mismo con tipos
+                    if exclusive_type == "Si, tipos exclusivos/Yes, exclusive types": #Primero confirmamos si son exclusivos
+                        busc_types.sort() #Ordenamos la lista
+                        busc_types1 = ",".join(busc_types) #La unimos por comas sin espacios, asi estaán establecidas en la base de datos
+                        for index, row in tripleS.iterrows(): #Iteramos, buscamos y añadimos
                             if row["TYPE"] == busc_types1:
                                 base_type_exc.append(row["code"])
                     else:
-                        for index, row in tripleS.iterrows():
-                            if "," in row["TYPE"]:
-                                types_in = row["TYPE"].split(",")
-                                for i in types_in:
-                                    if i in busc_types:
-                                        if row["code"] not in base_type:
+                        for index, row in tripleS.iterrows(): #En caso que no sea tipos exclusivos
+                            if "," in row["TYPE"]: #Vemos si en la columna hay más de un tipo
+                                types_in = row["TYPE"].split(",") #Rompemos los tipos
+                                for i in types_in: #Iteramos por cada uno de los tipos
+                                    if i in busc_types: #Confirmamos si el tipo iterado pertenece al tipo buscado
+                                        if row["code"] not in base_type: #Si el código no se encuentra en la listam se añade
                                             base_type.append(row["code"])
                             else:
-                                if row["TYPE"] in busc_types:
+                                if row["TYPE"] in busc_types: #En caso haya solo un tipo, se va a revisar si es buscado y se va a agregar
                                     base_type.append(row["code"])
+                ##Probablemente hasta aca llegue a escribir comentarios, le he dado bastante tiempo a este trabajo más que nada por mi gusto con el grupo
+                #Pero al estar enfermo he podido avanzar con lo posible, no he dormido desde el jueves pero estoy feliz con el resultado
                 if "Por miembros/By Members" in start_pos:
                     if exclusive_mem == "Si, miembros exclusivos/Yes, exclusive members":
                         busc_member.sort()
