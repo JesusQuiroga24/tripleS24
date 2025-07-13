@@ -346,11 +346,7 @@ elif selected =="¿Quienes son tripleS?":
             coords1 = coords.split(", ")
             for i in coords1:
                 coords1.append(float(i))
-            st.write()
-            m = folium.Map(location=tuple(coords1), zoom_start=10, tiles="OpenStreetMap")
-            poppop = f"{tripleS_members.loc[index[0], "STAGE NAME"]},{tripleS_members.loc[index[0], "HOGAR"]}"
-            folium.Marker(tripleS_members.loc[index[0], "COORDS"], popup=poppop).add_to(m)
-            st_data = st_folium(m)
+            st.write(coords1)
 elif selected == "Buscador":
     st.markdown("<h1 style='text-align: center;'>Buscador</h1>", unsafe_allow_html=True)
     yesno = ["No", "Si/Yes"]
